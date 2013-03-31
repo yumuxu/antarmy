@@ -42,6 +42,9 @@ app.get('/post-new',function(req,res){
 	res.render('post-new');
 });
 app.post('/post-new',blogCon.saveBlog);
+app.get('/recommend-new',function(req,res){
+	res.render('recommend-new');
+});
 app.on('close',function(){
 	dao.disconnect(function(err){});
 });

@@ -1,6 +1,10 @@
 extend layout
 
 block content
-  form(method='post',action='/uploadImg',enctype='multipart/form-data')
+  form(method='post',id="formImg",action='/uploadImg',enctype='multipart/form-data')
+    script(type="text/javascript",src="/script/jquery-1.9.1.min.js")
+    script(type="text/javascript",src="/script/jquery.form.js")
+    script(type="text/javascript",src="/script/recommend-new.js")
     input(type='file',name='uploadImg',multiple='multiple')
-    input(type='submit',value='Upload')
+    input(type='submit',id="btnSubmit",value='Upload')
+  img(id="imgMain",src="",alt="upload img")
