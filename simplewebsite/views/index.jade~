@@ -1,0 +1,33 @@
+extend layout
+
+block content
+  script(type='text/javascript',src='/script/jquery-1.9.1.min.js')
+
+  link(rel='stylesheet',href='/stylesheets/tabs.css')
+  div#tabContainer
+    div#tabheader
+      div.curtabs(index=1) Login
+      div.tabs(index=2) Register
+    div#content1.tabscontent
+      form(action='/login',method='post')
+        lable Username:
+        br
+        input(type='text',name='usrname',id='Lusrname')
+        br
+        label Passwrod:
+        br
+        input(type='password',name='password',id='Lpassword')
+        br
+        input(type='submit',value='Login')
+    div#content2.tabscontent
+      form(action='/register', method='post')
+        lable Username:
+        br 
+        input(type='text',name='usrname',id='Rusrname')
+        br
+        label Password:
+        br
+        input(type='password',name='password',id='Rpassword')
+        br
+        input(type='submit',value='Register')
+  script(type='text/javascript',src='/script/tabs.js')

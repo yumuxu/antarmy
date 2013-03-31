@@ -1,0 +1,24 @@
+.tabs {
+  background-color: #1d953f;
+  color: #fff;
+  cursor: pointer;
+  width: 100px;
+  float: left;
+  text-align: center;
+}
+.curtabs {
+  background-color: #fbf5ec;
+  color: #000;
+  cursor: pointer;
+  width: 100px;
+  float: left;
+  text-align: center;
+}
+#tabheader {
+  width: 200px;
+  background-color: #1d953f;
+}
+#tabContainer {
+  border: 1px solid #1d953f;
+  width: 200px;
+}

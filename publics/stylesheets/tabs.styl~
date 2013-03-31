@@ -1,0 +1,14 @@
+.tabs
+  background-color #1d953f
+  color white
+  cursor pointer
+.curtabs
+  background-color #fbf5ec
+  color black
+  cursor pointer
+#tabheader
+  width 200px
+  background-color #1d953f
+#tabContainer
+  border 1px solid #1d953f
+  width 200px

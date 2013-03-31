@@ -1,0 +1,11 @@
+{
+  "name":"mysite",
+  "version":"0.0.1",
+  "private":"true",
+  "dependencis":{
+    "express":"*",
+    "jade":"*",
+    "stylus":"*",
+	"nib":"*"
+  }
+}

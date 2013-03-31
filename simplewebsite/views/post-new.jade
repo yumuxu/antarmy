@@ -1,0 +1,21 @@
+extend layout
+
+block content
+  link(rel='stylesheet',href='/stylesheets/post-new.css')
+  link(rel='stylesheet',type='text/css',href='http://yui.yahooapis.com/2.9.0/build/assets/skins/sam/skin.css')
+  script(src='http://yui.yahooapis.com/2.9.0/build/yahoo-dom-event/yahoo-dom-event.js')
+  script(src='http://yui.yahooapis.com/2.9.0/build/element/element-min.js')
+  script(src='http://yui.yahooapis.com/2.9.0/build/container/container_core-min.js')
+  script(src='http://yui.yahooapis.com/2.9.0/build/menu/menu-min.js')
+  script(src='http://yui.yahooapis.com/2.9.0/build/button/button-min.js')
+  script(src='http://yui.yahooapis.com/2.9.0/build/editor/editor-min.js')
+  form(method='post',action='/post-new',id='form1')
+    div#edicontainer(class='yui-skin-sam')
+      label Title:
+      input(type='text',id='iptTitle',name='iptTitle')
+      rb
+      br
+      textarea(name='editor',id='editor')
+      input(type='button',id='btnSave',name='btnSave',value='Save')
+    script(type='text/javascript',src='/script/jquery-1.9.1.min.js')
+    script(type='text/javascript',src='/script/yuieditor.js')

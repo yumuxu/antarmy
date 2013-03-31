@@ -1,0 +1,52 @@
+var util = require("util");
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
+var dbstr = require("../configure").db;
+
+var userschema = new Schema({
+	usrname:String
+   ,password:String
+});
+
+var Usrmodel = mongoose.model('user',userschema,'user');
+
+exports.connect = function(callback){
+	mongoose.connect(dbstr);
+}
+
+exports.disconnect = function(callback){
+	mongoose.disconnect(callback);
+}
+
+exports.getPwd = function(obj,callback){
+	Usrmodel.findOne(obj,'password',function(err,adv){
+		if (err){
+			util.log('fATAL'+rrr);
+			callback(err,null);
+		}
+		callback(null,adv);
+	});
+}
+exports.saveUsrpwd = function(obj,callback){
+	var newUsr = new Usrmodel();
+	newUsr.usrname = obj.usrname;
+	newUsr.password = obj.password;
+    newUsr.save(function(err){
+		if (err){
+			util.log("FATAL:"+err);
+			callback(err);
+		}else{
+			callback(null);
+		}
+	});
+}
+/*
+console.log('xxx');
+mongoose.connect(dbstr);
+Usrmodel.findOne({usrname:'admin'},function(err,adv){
+	console.log('ddd');
+	console.log(err);
+	console.log(adv);
+});
+*/

@@ -1,0 +1,17 @@
+var db = require('../dao/dao');
+
+exports.saveBlog=function(req,res,next){
+	var obj = new Object();
+	obj.title = req.body.title;
+	obj.content = req.body.content;
+	
+	db.saveBlog(obj,function(err){
+		if (err){
+			res.end('save fail!');
+			next(err);
+		}else{
+			res.end('save success!');
+			next(null);
+		}
+	});
+}

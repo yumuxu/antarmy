@@ -1,0 +1,6 @@
+extend layout
+
+block content
+  form(method='post',action='/uploadImg',enctype='multipart/form-data')
+    input(type='file',name='uploadImg',multiple='multiple')
+    input(type='submit',value='Upload')
