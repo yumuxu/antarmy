@@ -6,6 +6,7 @@ var mongoose = require("mongoose");
 var control = require("./controllers/loginContr.js");
 var regcon = require("./controllers/regiContr.js");
 var blogCon = require("./controllers/blogContr.js");
+var recomCon = require("./controllers/recommendContr.js");
 var fs = require("fs");
 
 var app = express();
@@ -33,10 +34,11 @@ app.configure(function(){
     app.use(express.bodyParser({uploadDir:"./upload"}));
     app.use(express.static(__dirname+'/publics'));
     app.use(express.favicon(__dirname+'/favicon.ico'));
+	app.use(express.errorHandler({dumpException:true}));
+	
 });
 
 app.get('/',function(req,res){
-
 	res.render('index',{title:'home'});
 });
 app.post('/login',control.authLogin);
@@ -48,26 +50,18 @@ app.post('/post-new',blogCon.saveBlog);
 app.get('/recommend-new',function(req,res){
 	res.render('recommend-new');
 });
-app.post("/uploadImg",function(req,res){
-	console.log(req.files.uploadImg.name);
-    var tmp_path = req.files.uploadImg.path;
-	var target_path = "./publics/images/"+req.files.uploadImg.name;
-	
-	fs.rename(tmp_path,target_path,function(err){
-		if (err) throw err;
-		
-		//删除临时文件
-//		fs.unlink("./"+tmp_path,function(err){
-//			if (err){
-//				console.log(err);
-//			}
-			res.end("images/"+req.files.uploadImg.name);
-//		});
-	});
-//	res.end(req.files.uploadImg.path.substr(8));
+
+app.post("/uploadImg",recomCon.remImgUpload);
+
+app.post("/uploadField",function(req,res){
+	console.log(req.body.txtRecom);
+	console.log(req.body.txtPrice);
+	console.log(req.body.hdImgPath);
+	res.end("success~!");
 });
+
 app.on('close',function(){
 	dao.disconnect(function(err){});
 });
-app.listen(3000);
+app.listen(3020);
 

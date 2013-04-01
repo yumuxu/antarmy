@@ -1,10 +1,23 @@
 extend layout
 
 block content
-  form(method='post',id="formImg",action='/uploadImg',enctype='multipart/form-data')
-    script(type="text/javascript",src="/script/jquery-1.9.1.min.js")
-    script(type="text/javascript",src="/script/jquery.form.js")
-    script(type="text/javascript",src="/script/recommend-new.js")
-    input(type='file',name='uploadImg',multiple='multiple')
-    input(type='submit',id="btnSubmit",value='Upload')
-  img(id="imgMain",src="",alt="upload img")
+  link(rel='stylesheet',href='/stylesheets/recommend.css')
+  form(method='post',id="formField",action="/uploadField",enctype="multipart/form-data")
+    div(class='group')
+      lable Recommend: 
+      input(type='submit',id='fieldSubmit',name='fieldSubmit',value='Submit')
+      br
+      textarea(id="txtRecom",name='txtRecom')
+    div(class='group')
+      lable Prices:
+      br
+      input(id="txtPrice",name='txtPrice')
+    input(type='hidden',name='hdImgPath',id='hdImgPath')
+  div(class='group')
+    form(method='post',id="formImg",action='/uploadImg',enctype='multipart/form-data')
+      script(type="text/javascript",src="/script/jquery-1.9.1.min.js")
+      script(type="text/javascript",src="/script/jquery.form.js")
+      script(type="text/javascript",src="/script/recommend-new.js")
+      input(type='file',name='uploadImg',multiple='multiple')
+      input(type='submit',id="btnSubmit",value='Upload')
+    img(id="imgMain",src="",alt="upload img")

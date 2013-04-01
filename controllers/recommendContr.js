@@ -1,11 +1,14 @@
-var fs = rquire('fs');
-var formidable = require('formidable');
+var fs = require('fs');
+//var formidable = require('formidable');
 
-exprots.remImgUpload = function(req,res){
-	var form = new formidable.IncomingForm();
+exports.remImgUpload = function(req,res){
+	console.log(req.files.uploadImg.name);
+    var tmp_path = req.files.uploadImg.path;
+	var target_path = "./publics/images/"+req.files.uploadImg.name;
 	
-	form.parse(req,function(err,fields,files){
-		console.log(files.upload.path);
-		res.end('success!');
+	fs.rename(tmp_path,target_path,function(err){
+		if (err) throw err;
+		//删除临时文件
+		res.end("images/"+req.files.uploadImg.name);
 	});
 };
