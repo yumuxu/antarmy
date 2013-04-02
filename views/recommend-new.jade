@@ -4,14 +4,18 @@ block content
   link(rel='stylesheet',href='/stylesheets/recommend.css')
   form(method='post',id="formField",action="/uploadField",enctype="multipart/form-data")
     div(class='group')
-      lable Recommend: 
+      label Recommend: 
       input(type='submit',id='fieldSubmit',name='fieldSubmit',value='Submit')
       br
       textarea(id="txtRecom",name='txtRecom')
     div(class='group')
-      lable Prices:
+      label Prices:
       br
       input(id="txtPrice",name='txtPrice')
+    div(class='group')
+      label Url:
+      br
+      input(id='txtUrl',name='txtUrl')
     input(type='hidden',name='hdImgPath',id='hdImgPath')
   div(class='group')
     form(method='post',id="formImg",action='/uploadImg',enctype='multipart/form-data')

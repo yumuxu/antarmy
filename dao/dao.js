@@ -14,10 +14,19 @@ var blogschema = new Schema({
 	title:String
 	,content:String
 });
+//item 模式
+var itemschema = new Schema({
+	recommend:String
+	,price: Number
+	,url:String
+	,imgPath:String
+});
 
 var Usrmodel = mongoose.model('user',userschema,'user');
 
 var Blogmodel = mongoose.model('blog',blogschema,'blog');
+
+var Itemmodel = mongoose.model('item',itemschema,'item');
 
 exports.connect = function(callback){
 	mongoose.connect(dbstr);
@@ -25,6 +34,25 @@ exports.connect = function(callback){
 
 exports.disconnect = function(callback){
 	mongoose.disconnect(callback);
+}
+
+exports.findItems = function(cond,opti,callback){
+	Itemmodel.find(cond,null,opti,function(err,docs){
+		if(err) throw err;
+		callback(docs);
+	});
+}
+
+exports.saveItem = function(obj,callback){
+	var newItem  = new Itemmodel(obj);
+	newItem.save(function(err){
+		if (err){
+			util.log("FATAL:"+err);
+			callback(err);
+		}else{
+			callback(null);
+		}
+	});
 }
 
 exports.getPwd = function(obj,callback){

@@ -53,12 +53,9 @@ app.get('/recommend-new',function(req,res){
 
 app.post("/uploadImg",recomCon.remImgUpload);
 
-app.post("/uploadField",function(req,res){
-	console.log(req.body.txtRecom);
-	console.log(req.body.txtPrice);
-	console.log(req.body.hdImgPath);
-	res.end("success~!");
-});
+app.post("/uploadField",recomCon.remFieldUpload);
+
+app.get("/recommend-list",recomCon.getRemList);
 
 app.on('close',function(){
 	dao.disconnect(function(err){});
