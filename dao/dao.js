@@ -20,6 +20,7 @@ var itemschema = new Schema({
 	,price: Number
 	,url:String
 	,imgPath:String
+	,isRecom:String
 });
 
 var Usrmodel = mongoose.model('user',userschema,'user');

@@ -47,10 +47,17 @@ app.get('/post-new',function(req,res){
 	res.render('post-new');
 });
 app.post('/post-new',blogCon.saveBlog);
+//----------------------------------------
 app.get('/recommend-new',function(req,res){
-	res.render('recommend-new');
+	var obj = new Object();
+	obj.recommend='';
+	obj.price = "";
+	obj.url="";
+	obj.isRecom = 'Y';
+	obj.imgPath = "";
+	res.render('recommend-new',{recomItem:obj});
 });
-
+app.get('/recommend-new/:id',recomCon.getItemByid);
 app.post("/uploadImg",recomCon.remImgUpload);
 
 app.post("/uploadField",recomCon.remFieldUpload);

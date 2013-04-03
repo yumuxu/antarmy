@@ -1,6 +1,11 @@
 var fs = require('fs');
 var db = require("../dao/dao");
-//var formidable = require('formidable');
+
+exports.getItemByid = function(req,res){
+	db.findItems({"_id":req.params.id},null,function(docs){
+		res.render("recommend-new",{recomItem:docs[0]});
+	});
+};
 
 exports.remImgUpload = function(req,res){
 	//console.log(req.files.uploadImg.name);
@@ -21,7 +26,8 @@ exports.remFieldUpload = function(req, res){
 	obj.price = req.body.txtPrice;
 	obj.url = req.body.txtUrl;
 	obj.imgPath = req.body.hdImgPath;
-
+	obj.isRecom = req.body.selIsRecom;
+	console.log(obj.imgPath);
 	db.saveItem(obj,function(err){
 		if (err) throw err;
 		res.redirect("/recommend-list");

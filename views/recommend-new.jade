@@ -7,16 +7,25 @@ block content
       label Recommend: 
       input(type='submit',id='fieldSubmit',name='fieldSubmit',value='Submit')
       br
-      textarea(id="txtRecom",name='txtRecom')
+      textarea(id="txtRecom",name='txtRecom')=recomItem.recommend
     div(class='group')
       label Prices:
       br
-      input(id="txtPrice",name='txtPrice')
+      input(id="txtPrice",name='txtPrice',value=recomItem.price)
     div(class='group')
       label Url:
       br
-      input(id='txtUrl',name='txtUrl')
-    input(type='hidden',name='hdImgPath',id='hdImgPath')
+      input(id='txtUrl',name='txtUrl',value=recomItem.url)
+    div(class='group')
+      label IsRecommend:
+      select(id='selIsRecom',name='selIsRecom') 
+        - if (recomItem.isRecom=='N')
+          option Y
+          option(selected='selected') N
+        - else
+          option(selected='selected') Y
+          option N
+    input(type='hidden',name='hdImgPath',id='hdImgPath',value=recomItem.imgPath)
   div(class='group')
     form(method='post',id="formImg",action='/uploadImg',enctype='multipart/form-data')
       script(type="text/javascript",src="/script/jquery-1.9.1.min.js")
@@ -24,4 +33,4 @@ block content
       script(type="text/javascript",src="/script/recommend-new.js")
       input(type='file',name='uploadImg',multiple='multiple')
       input(type='submit',id="btnSubmit",value='Upload')
-    img(id="imgMain",src="",alt="upload img")
+    img(id="imgMain",src='/'+recomItem.imgPath,alt="upload img")
