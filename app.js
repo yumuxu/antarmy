@@ -60,9 +60,11 @@ app.get('/recommend-new',function(req,res){
 app.get('/recommend-new/:id',recomCon.getItemByid);
 app.post("/uploadImg",recomCon.remImgUpload);
 
-app.post("/uploadField",recomCon.remFieldUpload);
+app.post("/uploadField",recomCon.newRecommend);
 
 app.get("/recommend-list",recomCon.getRemList);
+
+app.post("/recommend-del",recomCon.delRecom);
 
 app.on('close',function(){
 	dao.disconnect(function(err){});

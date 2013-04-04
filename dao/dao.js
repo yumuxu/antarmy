@@ -44,6 +44,20 @@ exports.findItems = function(cond,opti,callback){
 	});
 }
 
+exports.delItemById = function(id,callback){
+	Itemmodel.findByIdAndRemove(id,function(err){
+		if(err) throw err;
+		callback();
+	});
+}
+
+exports.updateItem = function(cond,obj,callback){
+	Itemmodel.findOneAndUpdate(cond,{$set:{recommend:obj.recommend,price:obj.price,imgPath:obj.imgPath,isRecom:obj.isRecom,url:obj.url}},function(err){
+		if (err) throw err;
+		callback();
+	});
+}
+
 exports.saveItem = function(obj,callback){
 	var newItem  = new Itemmodel(obj);
 	newItem.save(function(err){

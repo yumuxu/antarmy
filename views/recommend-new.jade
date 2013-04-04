@@ -26,6 +26,7 @@ block content
           option(selected='selected') Y
           option N
     input(type='hidden',name='hdImgPath',id='hdImgPath',value=recomItem.imgPath)
+    input(type='hidden',name='hdID',id='hdID',value=recomItem._id)
   div(class='group')
     form(method='post',id="formImg",action='/uploadImg',enctype='multipart/form-data')
       script(type="text/javascript",src="/script/jquery-1.9.1.min.js")
