@@ -7,6 +7,7 @@ var control = require("./controllers/loginContr.js");
 var regcon = require("./controllers/regiContr.js");
 var blogCon = require("./controllers/blogContr.js");
 var recomCon = require("./controllers/recommendContr.js");
+var auth = require("./controllers/authContr.js");
 var fs = require("fs");
 
 var app = express();
@@ -32,11 +33,18 @@ app.configure(function(){
 		compile:compile
 	} ));
     app.use(express.bodyParser({uploadDir:"./upload"}));
+	app.use(express.cookieParser());
+	app.use(function(req,res,next){
+		var cookie = req.cookies["taoteacookie"].split("\t");
+		console.log(cookie[0]);
+		next();
+	});
     app.use(express.static(__dirname+'/publics'));
     app.use(express.favicon(__dirname+'/favicon.ico'));
 	app.use(express.errorHandler({dumpException:true}));
-	
 });
+
+
 
 app.get('/',function(req,res){
 	res.render('index',{title:'home'});

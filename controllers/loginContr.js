@@ -1,5 +1,5 @@
 var db = require("../dao/dao");
-
+var auth = require("./authContr.js");
 exports.authLogin = function(req,res,next){
 	var t_name = req.body.usrname;
 	console.log(req.body);
@@ -9,7 +9,8 @@ exports.authLogin = function(req,res,next){
 			console.log(err);
 		else{
 			if (t_pwd === doc.password){
-				res.redirect('post-new');
+				auth.gen_session({username:t_name,password:t_pwd},res);
+				res.redirect('recommend-list');
 			}else{
 				res.redirect('/');
 			}
