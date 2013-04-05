@@ -34,11 +34,6 @@ app.configure(function(){
 	} ));
     app.use(express.bodyParser({uploadDir:"./upload"}));
 	app.use(express.cookieParser());
-	app.use(function(req,res,next){
-		var cookie = req.cookies["taoteacookie"].split("\t");
-		console.log(cookie[0]);
-		next();
-	});
     app.use(express.static(__dirname+'/publics'));
     app.use(express.favicon(__dirname+'/favicon.ico'));
 	app.use(express.errorHandler({dumpException:true}));
@@ -70,7 +65,7 @@ app.post("/uploadImg",recomCon.remImgUpload);
 
 app.post("/uploadField",recomCon.newRecommend);
 
-app.get("/recommend-list",recomCon.getRemList);
+app.get("/recommend-list",auth.auth,recomCon.getRemList);
 
 app.post("/recommend-del",recomCon.delRecom);
 
