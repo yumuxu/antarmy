@@ -42,6 +42,7 @@ app.configure(function(){
 
 
 app.get('/',function(req,res){
+	console.log(req.headers);
 	res.render('index',{title:'home'});
 });
 app.post('/login',control.authLogin);
@@ -68,6 +69,13 @@ app.post("/uploadField",recomCon.newRecommend);
 app.get("/recommend-list",auth.auth,recomCon.getRemList);
 
 app.post("/recommend-del",recomCon.delRecom);
+
+app.post("/act/:id",function(req,res){
+	var user_agent1 = req.headers['user-agent1'];
+	
+	console.log(user_agent1.substr(1));
+	res.end('ddddd');
+});
 
 app.on('close',function(){
 	dao.disconnect(function(err){});
