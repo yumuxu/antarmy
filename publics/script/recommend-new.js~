@@ -1,0 +1,8 @@
+$(document).ready(function(){
+    $("#imgMain").hide();
+	$("#formImg").ajaxForm(function(data,status){
+		$("#imgMain").attr("src",data);
+		$("#imgMain").show();
+		$("#hdImgPath").attr("value",data);
+	});
+});

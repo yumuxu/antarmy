@@ -1,0 +1,16 @@
+.group {
+  border-bottom: 1px solid #000;
+  width: 100%;
+  margin-bottom: 15px;
+}
+#txtRecom {
+  width: 600px;
+  height: 36px;
+}
+#fieldSubmit {
+  position: relative;
+  left: 70%;
+}
+#txtUrl {
+  width: 400px;
+}

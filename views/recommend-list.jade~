@@ -1,0 +1,30 @@
+extend layout
+
+block content
+  link(rel='stylesheet',href='/stylesheets/recomList.css')
+  script(type='text/javascript',src='/script/jquery-1.9.1.min.js')
+  script(type='text/javascript',src='/script/recommend-list.js')
+  table#recomTable
+    thead
+      tr
+        td 序号
+        td 推荐
+        td 价格
+        td Url
+        td 推荐
+        td 编辑
+        td 删除
+    tbody   
+    - for(var i = 0; i < recomList.length; ++i)
+      tr(value=recomList[i]._id)
+        td=i+1
+        td=recomList[i].recommend.length>10?recomList[i].recommend.substr(0,10)+'...':recomList[i].recommend
+        td=recomList[i].price
+        td
+          a(href=recomList[i].url,target='_blank')=recomList[i].url
+        td=recomList[i].isRecom
+        td
+          img(src='images/004_19.png',class='editImg')
+        td
+          img(src='images/004_15.png',class='delImg')
+     

@@ -1,0 +1,28 @@
+var crypto = require("crypto");
+var config = require("../configure");
+function encrypto(str,secret){
+	var cipher = crypto.createCipher('aes192',secret);
+	var enc = cipher.update(str,'utf8','hex');
+	enc += cipher.final('hex');
+	return enc;
+}
+
+function decrypto(str,secret){
+	var decipher = crypto.createDecipher("aes192",secret);
+	var dec = decipher.update(str,'hex','utf8');
+	dec += decipher.final('utf8');
+	
+	return dec;
+}
+
+exports.gen_session = function(user,res){
+	//var auth_token = encrypto(user.username + '\t'+user.password,config.session_secret);
+	var auth_token = user.username+"\t"+user.password;
+	res.cookie(config.auth_cookie_name,auth_token,{path:'/',maxAge:1000*60*60*24});
+}
+
+exports.isAuthSuccess = function(user,req){
+	var auth_token = req.cookie[config.auth_cookie_name];
+	
+	console.log(auth_token);
+}
