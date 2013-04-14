@@ -71,13 +71,10 @@ app.get("/recommend-list",auth.auth,recomCon.getRemList);
 app.post("/recommend-del",recomCon.delRecom);
 
 app.get("/act",log.log,function(req,res){
-//	var user_agent1 = req.headers['user-agent1'];
-	console.log(JSON.stringify(req.headers) + "------"+req.path);
 	res.end('ddddd');
 });
 
-app.post("/act",function(req,res){
-	console.log(req.headers);
+app.post("/act",log.log,function(req,res){
 	res.end("qqqq");
 });
 
