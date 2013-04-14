@@ -8,6 +8,7 @@ var regcon = require("./controllers/regiContr.js");
 var blogCon = require("./controllers/blogContr.js");
 var recomCon = require("./controllers/recommendContr.js");
 var auth = require("./controllers/authContr.js");
+var log = require("./controllers/logContr.js");
 var fs = require("fs");
 
 var app = express();
@@ -42,7 +43,6 @@ app.configure(function(){
 
 
 app.get('/',function(req,res){
-	console.log(req.headers);
 	res.render('index',{title:'home'});
 });
 app.post('/login',control.authLogin);
@@ -70,11 +70,15 @@ app.get("/recommend-list",auth.auth,recomCon.getRemList);
 
 app.post("/recommend-del",recomCon.delRecom);
 
-app.post("/act/:id",function(req,res){
-	var user_agent1 = req.headers['user-agent1'];
-	
-	console.log(user_agent1.substr(1));
+app.get("/act",log.log,function(req,res){
+//	var user_agent1 = req.headers['user-agent1'];
+	console.log(JSON.stringify(req.headers) + "------"+req.path);
 	res.end('ddddd');
+});
+
+app.post("/act",function(req,res){
+	console.log(req.headers);
+	res.end("qqqq");
 });
 
 app.on('close',function(){

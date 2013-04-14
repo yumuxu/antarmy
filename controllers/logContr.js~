@@ -1,0 +1,1 @@
+var Log = require("../models/LogManager.js");
