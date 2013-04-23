@@ -3,14 +3,14 @@ var Schema = mongoose.Schema;
 
 var logschema = new Schema({
 	time:Date,
-	headers:Object,
+	user_agent:String,
+	host:String,
 	path:String
 });
 
 var Logmodel = mongoose.model("log",logschema,"log");
 
 exports.saveLog = function(obj,callback){
-	console.log(obj);
 	var log = new Logmodel(obj);
 	log.save(function(err){
 		if (err) throw err;

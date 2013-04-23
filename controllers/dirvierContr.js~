@@ -1,0 +1,5 @@
+var Dri = require("../models/UserManager.js");
+
+exports.parseUseragent = function(){
+	
+};

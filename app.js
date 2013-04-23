@@ -9,6 +9,7 @@ var blogCon = require("./controllers/blogContr.js");
 var recomCon = require("./controllers/recommendContr.js");
 var auth = require("./controllers/authContr.js");
 var log = require("./controllers/logContr.js");
+var dri = require("./controllers/dirvierContr.js");
 var fs = require("fs");
 
 var app = express();
@@ -71,11 +72,25 @@ app.get("/recommend-list",auth.auth,recomCon.getRemList);
 app.post("/recommend-del",recomCon.delRecom);
 
 app.get("/act",log.log,function(req,res){
-	res.end('ddddd');
+	dri.parseUseragent(req.headers["user-agent1"],function(isSuccess){
+		if(isSuccess){
+			res.end("success!");
+		}
+		else{
+			res.end("fail!");
+		}
+	});
 });
 
 app.post("/act",log.log,function(req,res){
-	res.end("qqqq");
+		dri.parseUseragent(req.headers["user-agent1"],function(isSuccess){
+		if(isSuccess){
+			res.end("success!");
+		}
+		else{
+			res.end("fail!");
+		}
+	});
 });
 
 app.on('close',function(){
