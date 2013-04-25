@@ -15,13 +15,13 @@ var driverschema = new Schema({
 	pid:Number,//产品编号，
 	pt:Number,//产品系列-仅用于推送获取证书
 	ch:String,//用户下载本产品的渠道编号
-	ver:Number//程序版本号，用数值表示
+	ver:Number,//程序版本号，用数值表示
+	visittm:Date
 });
 
 var Drivermodel = mongoose.model("driver",driverschema,"driver");
 
 exports.saveDriver = function(obj,callback){
-	
 	findByMac(obj.mac,function(docs){
 		if(docs.length==0){
 			var dri = new Drivermodel(obj);
