@@ -16,7 +16,7 @@ var driverschema = new Schema({
 	pt:Number,//产品系列-仅用于推送获取证书
 	ch:String,//用户下载本产品的渠道编号
 	ver:Number,//程序版本号，用数值表示
-	visittm:Date
+	visittm:Array
 });
 
 var Drivermodel = mongoose.model("driver",driverschema,"driver");
@@ -30,6 +30,9 @@ exports.saveDriver = function(obj,callback){
 				callback(null);
 			});		
 		}else{
+			//2013-04-26yumux 访问时间存成数组
+			docs[0].visittm.push(obj.visittm[0]);
+			obj.visittm = docs[0].visittm;
 			Drivermodel.update({mac:obj.mac},obj,function(err,n){
 				if (err) throw err;
 				callback(null);

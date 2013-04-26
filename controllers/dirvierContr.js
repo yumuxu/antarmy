@@ -12,7 +12,8 @@ exports.parseUseragent = function(agent,callback){
 			obj[items[0]] = items[1];
 		}
 		//yumuxu2013-04-25添加一个访问时间
-		obj["visittm"] = new Date();
+		obj["visittm"] = new Array();
+		obj["visittm"].push(new Date());
 		Dri.saveDriver(obj,function(){});
 		callback(true);
 	}else{
